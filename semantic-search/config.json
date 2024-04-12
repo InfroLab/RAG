@@ -1,0 +1,10 @@
+{
+    "onnx-runtime": "TRT",
+    "hf-model-id": "sentence-transformers/msmarco-MiniLM-L12-cos-v5",
+    "faiss-dataset": "cnbc",
+    "faiss-dataset-top-k": 5,
+    "faiss-questions-thresh": 0.95,
+    "faiss-questions-top-k": 5,
+    "faiss-regenerate-on-start": true,
+    "faiss-regenerate-on-error": false
+}

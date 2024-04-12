@@ -1,0 +1,42 @@
+services:
+  semantic-search:
+    build:
+      context: .
+      dockerfile: './semantic-search/Dockerfile'
+    volumes:
+    - ./semantic-search:/usr/src/app
+    ports:
+    - 80:80
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  llm:
+    build:
+      context: .
+      dockerfile: './llm/Dockerfile'
+    volumes:
+    - ./llm:/usr/src/app
+    ports:
+    - 80:80
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  api:
+    build:
+      context: .
+      dockerfile: './api/Dockerfile'
+    volumes:
+    - ./api:/usr/src/app
+    ports:
+    - 80:80
+    depends_on:
+      - llm
+      - semantic-search
