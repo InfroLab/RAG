@@ -19,5 +19,3 @@ cd ./model
 git clone --remote=git@hf.co:Athroniaeth/mistral-7b-v0.2-trtllm-int4 
 export TOKENIZERS_PARALLELISM=false
 trtllm-build --checkpoint_dir ./mistral-7b-v0.2-trtllm-int4/1-gpu --output_dir ../engine --gemm_plugin float16 --max_input_len 32256
-cd ..
-python -m run.py --max_output_len=50 --tokenizer_dir ./model/mistral-7b-v0.2-trtllm-int4/Mistral-7B-Instruct-v0.2 --engine_dir=./engine --max_attention_window_size=4096 --run_profiling

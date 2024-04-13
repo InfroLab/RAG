@@ -18,16 +18,15 @@ Project is defined mainly in 4 files: a docker-compose.yml and 3 Dockerfiles for
 
 ***api*** API service to perform basic answering for prompts including prompts history. JSON-strings that correpospond to the following `pydantic`-format are expected:
 ```python
-class Prompt(BaseModel):
-    prompts: List[Dict[str,str]]
-class QueryAndHistory(Prompt):
+class Query(BaseModel):
     query: str
+    history: Optional[List[Dict[str,str]]]
 ```
 
 To build the project run:
 > docker compose build
 
-Installation process takes about 10-15 minutes. So, take a coffee break. All container will be equipped with `conda` environments with `Python 3.10.14` and a dependencies defined in corresponding `environment.yml`'s.
+Installation process takes about 15-20 minutes. So, take a coffee break. All container will be equipped with `conda` environments with `Python 3.10.14` and a dependencies defined in corresponding `environment.yml`'s.
 
 # Running the containers
 > docker-compose up

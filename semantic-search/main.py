@@ -1,6 +1,8 @@
-from typing import Union
+from typing import List
+
 from fastapi import FastAPI
 from fastapi import status
+
 from .utils.app_models import Text, CandidateText
 from .retreiver.retriever import VectorStoreRetriever
 
@@ -21,7 +23,7 @@ async def add_question(text: Text):
     return status.HTTP_404_NOT_FOUND 
 
 @app.get("/search")
-async def search(text: Text):
+async def search(text: Text) -> List[CandidateText]:
     nodes = retriever.retrieve(text.text)
     candidates = []
     for node in nodes:
